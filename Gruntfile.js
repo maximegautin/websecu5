@@ -12,6 +12,9 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  require('load-grunt-tasks')(grunt);
+
+
   // Automatically load required Grunt tasks
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
@@ -24,6 +27,8 @@ module.exports = function (grunt) {
     app: require('./bower.json').appPath || 'app',
     dist: 'dist'
   };
+
+
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -438,12 +443,16 @@ module.exports = function (grunt) {
       },
       heroku: {
           options: {
-              remote: 'git@heroku.com:heroku-app-1985.git',
+              remote: 'git.heroku.com/websecu.git',
               branch: 'master'
           }
       }
    }
+
+   
   });
+
+  grunt.registerTask('deploy', ['buildcontrol']);
 
   
 
@@ -502,7 +511,6 @@ module.exports = function (grunt) {
     'build'
   ]);
 
-  grunt.registerTask('deploy', ['buildcontrol']);
 
 
   
