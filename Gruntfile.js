@@ -443,7 +443,7 @@ module.exports = function (grunt) {
       },
       heroku: {
           options: {
-              remote: 'git.heroku.com/websecu.git',
+              remote: 'git.heroku.com:websecu.git',
               branch: 'master'
           }
       }
