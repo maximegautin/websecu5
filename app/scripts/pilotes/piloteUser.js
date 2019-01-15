@@ -6,10 +6,9 @@ angular.module('polytubeApp')
 
     var userservice = {};
 
-    var port = process.env.PORT || env.port;
-
+    var port = location.port;
  
-    var adresseServer = "https://localhost:" + port;
+    var adresseServer = "https://localhost:"+ port;
 
     userservice.inscription =  function(data){
 

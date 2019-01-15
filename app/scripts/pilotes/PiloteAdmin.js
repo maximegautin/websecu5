@@ -5,8 +5,8 @@ angular.module('polytubeApp')
     .service('piloteAdmin', function($http){
 
         var adminservice = {};
-
-        var port = process.env.PORT || env.port;
+        
+        var port = location.port;
 
         var adresseServer = "https://localhost:" + port;
 
