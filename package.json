@@ -40,6 +40,7 @@
   },
   "scripts": {
     "test": "karma start test/karma.conf.js",
+    "postinstall": "echo postinstall time; ./node_modules/grunt-cli/bin/grunt serve",
     "start": "node server.js"
   },
   "dependencies": {
