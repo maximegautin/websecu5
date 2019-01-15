@@ -1,0 +1,33 @@
+<div style="height: 70vh;background-color: white;">
+
+        <div class="row marketing">
+        
+        
+         <div style="max-height: calc(80vh - 200px);overflow-y: auto;">
+                
+                        
+            <table class = "table">
+                    <thead>
+                            <tr>
+                              <th scope="col"></th>
+                              <th scope="col">DATE</th>
+                              <th scope="col">EVENEMENT</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="l in logs | orderBy: '-date_log'">
+                            
+                                <th scope="row"></th>
+                                <td>{{l.date_log | date}}</td>
+                                <td>{{l.type_log}}</td>
+                            
+                        </tr>
+                    </tbody>
+            </table>
+                       
+        
+        </div>
+        
+        </div>
+</div>
+        

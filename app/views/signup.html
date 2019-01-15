@@ -1,0 +1,55 @@
+<div class="container" style="padding-top: 15%;">
+    <div class="row marketing">
+
+        
+        <div  class="jumbotron center-block" style="width: 85%;">
+                <h2 class="signup-heading text-center">Créer un compte</h2>
+                <div class ="row" id="alertinscription"></div>
+
+
+                <div class="row marketing">
+             
+                <div class = "row center-block" style="width : 85%;">
+                    <form ng-submit = "inscription()">
+                            <div class="form-group">
+        
+                            
+                                    <input type="text" ng-model = "nom" id="nomInscrit" class="form-control" placeholder="Nom" required autofocus>
+                                </div>
+                            <div class="form-group">
+        
+                            
+                                    <input type="text" ng-model = "prenom" id="prenomInscrit" class="form-control" placeholder="Prenom" required autofocus>
+                            </div>
+                         <div class="form-group">
+        
+                            
+                            <input type="email" ng-model = "email" id="email" class="form-control" placeholder="email" required autofocus>
+                        </div>
+                        <div class="form-group">
+        
+                            
+                           
+                            <input type="password" ng-model = "password" id="password" class="form-control" placeholder="Mot de passe" required autofocus>
+                       </div>
+                       <div class="form-group">
+        
+                            
+                           
+                            <input type="password" ng-model = "confirm_password" id="confirmPassword" class="form-control" placeholder="confirmer votre mot de passe" required autofocus>
+                       </div>
+                      <button class="btn btn-lg btn-primary btn-block" type="submit">Inscription</button>
+                  </form>
+            
+                  </div> 
+                    <div class="row marketing">
+                      <div class="switch text-center">
+                        Déjà un compte ? <a href="/login">Je me connecte</a>
+                      </div>
+                    </div>
+        
+                </div>
+        
+          </div>
+    </div>
+      </div> <!-- Container -->

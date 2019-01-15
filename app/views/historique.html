@@ -1,0 +1,19 @@
+
+
+<div class="row marketing">
+        <h2 class="text-heading text-center">Historique </h2>
+    
+        
+</div>
+<div style="height: 70vh;">
+
+<div class="row marketing">
+
+<div class="vertical-menu">
+     <div style="max-height: calc(80vh - 200px);overflow-y: auto;">
+        <a href="#" ng-repeat="h in userHistorique | orderBy:'-date_recherche'" ng-click="relancerRecherche(h.recherche)">{{h.recherche}}</a>
+    </div>
+</div>
+
+</div>
+</div>

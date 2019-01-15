@@ -1,0 +1,22 @@
+<div id="alertdroit"></div>
+
+
+<div class="row marketing">
+
+   
+        <div class = "row marketing">
+            <button class = "btn btn-default btn-primary col-md-5 offset-md-1" ng-click="changerDroit()" ng-if ="uSelected.role != 'bloqué' && uSelected.role != 'supprimé'"><span ng-if="uSelected.role == 'user'">Définir comme Admin</span><span ng-if="uSelected.role == 'admin'">Enlever Droits Admin</span></button>
+
+            
+            <button class = "btn btn-default btn-danger col-md-5 offset-md-1" ng-if="uSelected.role != 'supprimé'" ng-click="blocage()"><span ng-if="uSelected.role == 'bloqué'">Débloquer utilisateur</span><span ng-if="uSelected.role == 'user' ">Bloquer Utilisateur </span><span ng-if="uSelected.role == 'admin' ">Bloquer cet Utilisateur </span></button>
+            <div class="row marketing" ng-if="uSelected.role == 'supprimé'">
+                Utilisateur supprimé, Aucune action possible !
+            </div>
+
+        </div>
+    
+    
+    
+</div>    
+
+

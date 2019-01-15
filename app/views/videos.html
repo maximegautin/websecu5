@@ -1,0 +1,83 @@
+
+<div class="row marketing" style="margin-bottom: 0px;">
+  
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light pull-right" style="margin-bottom: 0px;">
+
+   
+    
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+            
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                
+           
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav" id="filtre">
+              <a class= "nav-item nav-link active" style="padding-right: 10px;" href="#"  ng-click='declencherRecherche()'><b style="font-family:Times, sans-serif; font-size: large;">Tout</b></a> 
+              <a class= "nav-item nav-link" style="padding-right: 10px;" href="#"  ng-click='filtrerRechercheYoutube()'> <span class="fa fa-youtube fa-2x"></span> </a>
+              <a class= "nav-item nav-link" style="padding-right: 10px;" href="#" ng-click='filtrerRechercheVimeo()'> <span class="fa fa-vimeo fa-2x"></span></a>
+          </div>
+        </div>
+        
+    </nav>
+
+    
+  </div>
+ 
+
+
+  <div class="row">
+          <div class ="row" ng-repeat = "s in results">
+            <div ng-if="s.id">
+              
+                <hr>
+                <div class="thumbnail col-md-6">
+
+                    <a href="/regarderVideo/youtube/{{s.id}}">
+                      <img src={{s.thumbnails.medium.url}} style="width:100%">
+                    </a>
+                </div>
+                <div class="col-md-6 ">
+                    <a href="/regarderVideo/youtube/{{s.id}}">
+                    <h4 class="media-heading">{{s.title}}</h4>
+                    </a>
+
+                    <br />
+                    <span>{{ s.description | limitTo: 150 }}{{s.description.length > 150 ? '...' : ''}}</span>
+                    
+                </div>
+            </div>
+
+            <div ng-if="s.stats">
+                <hr >
+              <div class="thumbnail col-md-6">
+                  <a href="/regarderVideo/vimeo{{s.uri}}">
+                    <div ng-repeat="i in s.pictures.sizes">
+                      <div ng-if="i.height == 166">
+                          <img src={{i.link_with_play_button}} style="width:100%">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div class="col-md-6 ">
+                  <a href="/regarderVideo/vimeo{{s.uri}}">
+                  <h4 class="media-heading">{{s.name}}</h4>
+                  </a>
+
+                  <br />
+                      <span>{{ s.description | limitTo: 150 }}{{s.description.length > 150 ? '...' : ''}}</span>
+                      
+
+                </div>
+              </div>
+          </div>
+  
+ </div>
+
+
+      
+      
+     
+
+    

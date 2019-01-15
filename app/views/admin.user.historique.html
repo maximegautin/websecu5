@@ -1,0 +1,19 @@
+
+<div class="pull-right">
+   <a style="text-decoration:none; color:red;" ng-click="viderHistorique()"><p style="display:inline-block;"> Vider</p> <i class="fa fa-trash" style="display:inline-block;"></i></a> 
+</div>
+<div style="height: 70vh; background-color: #F8F8F8;">
+
+
+<div class="row marketing">
+
+<div class="vertical-menu">
+     <div style="max-height: calc(80vh - 200px);overflow-y: auto;">
+        <a href="#" ng-repeat="hi in sUserHistorique | orderBy:'-date_recherche'" >{{hi.recherche}} <small class="pull-right">{{hi.date_recherche | date}}</small></a>
+    </div>
+</div>
+
+</div>
+
+
+</div>

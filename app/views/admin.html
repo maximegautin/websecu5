@@ -1,0 +1,40 @@
+
+<div class="row marketing">
+    <h2 class="text-heading text-center">Utilisateurs </h2>
+
+    
+</div>
+<div style="height: 70vh;background-color: white;">
+
+<div class="row marketing">
+
+
+ <div style="max-height: calc(80vh - 200px);overflow-y: auto;">
+        
+                
+    <table class = "table">
+            <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">NOM</th>
+                      <th scope="col">EMAIL</th>
+                      <th scope="col">DROITS</th>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="u in users | orderBy: ['nom', 'prenom', 'email']" ng-click ="selectUser(u._id)">
+                    
+                        <th scope="row"></th>
+                        <td>{{u.nom}} {{u.prenom}}</td>
+                        <td>{{u.email}}</td>
+                        <td>{{u.role}}</td>
+                    
+                </tr>
+            </tbody>
+    </table>
+               
+
+</div>
+
+</div>
+</div>

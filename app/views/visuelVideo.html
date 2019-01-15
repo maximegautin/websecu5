@@ -1,0 +1,235 @@
+
+    
+   <div ng-controller = "watchCtrl">
+    <div ng-if='currentSource == "youtube" '>
+  
+       <div class="row marketing">
+   
+            <div class="embed-responsive embed-responsive-16by9">
+
+                    <iframe class="embed-responsive-item" ng-src="{{getIframeSrc()}}" allowfullscreen></iframe>
+            </div>
+         
+
+            <h3>{{currentVideo.snippet.title}}</h3>
+            
+            <hr>
+
+            <div id="alert_placeholder">
+                
+            </div>
+            <div class="row marketing">
+
+         
+
+
+                    <button type="button" class = "btn-danger btn-lg center-block" data-toggle="modal" data-target="#myModal" ><i class="fa fa-plus" aria-hidden="true"></i> Ajouter à ma Playlist</button>
+
+                    <!-- Trigger the modal with a button -->
+                    
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog" style="max-height: 80vh;">
+                    <div class="modal-dialog modal-notify modal-info" role="document">
+                    
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header d-flex justify-content-center" style="background-color :#ef3d47; ">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title text-center" style="color: white;">Playlists</h4>
+                        </div>
+                        <div class="modal-body">
+                            
+                    
+                                <div class="input-group">
+                                        <input id="barAjouterPlaylist" type="text" maxlength="30" class="form-control" placeholder="Nouvelle Playlist" /> 
+                                          <div class="input-group-btn">
+                                          
+                                            <button ng-click='ajouterPlaylist()' class="btn btn-default" type="submit">
+                                                <i class="fa fa-plus">
+                                      
+                                                </i>
+                                            </button>
+                                       
+                                          </div>
+                                </div>
+
+                         
+                          
+                    
+                            <div ng-if="currentUser.playlist.length == 0">
+                                <div class = "row marketing">
+                                Aucune playlist créée
+                                </div>
+                            </div>
+                      
+                       <div style=" max-height: calc(60vh - 140px);overflow-y: auto;">
+                            <div ng-repeat = "p in currentUser.playlist | orderBy:'-date_creation_playlist'">
+                               <div class = "row marketing">
+                                <div class="center-block" style="width:60%;">
+
+                                    <div class = "pretty p-default p-round p-pulse p-bigger">
+                                       <input type="radio" name="playlist" style="transform: scale(2);" ng-click="updateSelectedPlaylist(p._id)">
+
+                                        <div class="state p-success-o">
+                                            <label>{{p.name}}</label>
+                                        </div>
+
+                                           
+                                    </div>  
+                              </div>
+                          
+                         </div>
+                        </div>
+                    </div>
+                      
+                        <div class="modal-footer">
+                            <div ng-if="currentUser.playlist.length != 0">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click ='videoToplaylist()'>Ajouter</button>
+                            </div>
+                        </div>
+                        </div>
+                    
+                    </div>
+                    </div>
+                    
+
+
+
+
+            </div>
+            </div>
+
+            <div class="row marketing">
+            <p class = "text-justify" style = "color: gray;">
+                {{currentVideo.snippet.description}}
+            </p>
+       
+            </div>
+
+       </div>
+                
+      
+    </div>
+
+
+ 
+
+    <div ng-if='currentSource == "vimeo" '>
+        <div class = "row marketing">
+            <div class="embed-responsive embed-responsive-16by9">
+
+
+                <div ng-bind-html="vimeoIframe()"></div>
+            </div>
+            <h3>{{currentVideo.name}}</h3>
+                
+            <hr>
+            <div id="alert_placeholder">
+            </div>
+            <div class="row marketing">
+
+         
+
+
+                    <button type="button" class = "btn-danger btn-lg center-block" data-toggle="modal" data-target="#myModal" ><i class="fa fa-plus" aria-hidden="true"></i> Ajouter à ma Playlist</button>
+
+                    <!-- Trigger the modal with a button -->
+                    
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog" style="max-height: 80vh;">
+                    <div class="modal-dialog modal-notify modal-info" role="document">
+                    
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header d-flex justify-content-center" style="background-color :#ef3d47; ">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title text-center" style="color: white;">Playlists</h4>
+                        </div>
+                        <div class="modal-body">
+                            
+                    
+                                <div class="input-group">
+                                        <input id="barAjouterPlaylist" type="text" maxlength="30" class="form-control" placeholder="Nouvelle Playlist" /> 
+                                          <div class="input-group-btn">
+                                          
+                                            <button ng-click='ajouterPlaylist()' class="btn btn-default" type="submit">
+                                                <i class="fa fa-plus">
+                                      
+                                                </i>
+                                            </button>
+                                       
+                                          </div>
+                                </div>
+
+                         
+                          
+                    
+                            <div ng-if="currentUser.playlist.length == 0">
+                                <div class = "row marketing">
+                                Aucune playlist créée
+                                </div>
+                            </div>
+                      
+                       <div style=" max-height: calc(60vh - 140px);overflow-y: auto;">
+                            <div ng-repeat = "p in currentUser.playlist | orderBy:'-date_creation_playlist'">
+                               <div class = "row marketing">
+                                <div class="center-block" style="width:60%;">
+
+                                    <div class = "pretty p-default p-round p-pulse p-bigger">
+                                         <input type="radio" name="playlist" style="transform: scale(2);" ng-click="updateSelectedPlaylist(p._id)">
+
+                                        <div class="state p-success-o">
+                                            <label for = "p.name">{{p.name}}</label>
+                                        </div>
+
+                                           
+                                    </div>  
+                              </div>
+                          
+                         </div>
+                        </div>
+                    </div>
+                      
+                        <div class="modal-footer">
+                            <div ng-if="currentUser.playlist.length != 0">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click ='videoToplaylist()'>Ajouter</button>
+                            </div>
+                        </div>
+                        </div>
+                    
+                    </div>
+                    </div>
+                    
+
+
+
+
+            </div>
+            </div>
+
+                   
+
+        <div class="row marketing">
+
+            <p style = "color: gray;">
+
+                 {{currentVideo.description}}
+                       
+            </p>
+        
+         </div>
+        </div>
+
+        
+
+    </div>
+
+
+</div> 
+
+
+    
+
+   
+
+    

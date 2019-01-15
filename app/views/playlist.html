@@ -1,0 +1,224 @@
+<div class="row marketing" style="margin-bottom:0px;">
+    <h2 class="text-heading text-center">Playlists </h2>
+
+    
+</div>
+
+
+   <!-- Menu listant les Playlists -->
+
+<div class="pn-ProductNav_Wrapper ">
+        <nav id="pnProductNav" class="pn-ProductNav">
+            <div id="pnProductNavContents" class="pn-ProductNav_Contents">
+                <a style = "text-decoration: none" class="pn-ProductNav_Link" aria-selected="true" data-toggle="modal" data-target="#modalPlaylist" ng-click="setCurrentPlaylist(1)"><i class = "fa fa-plus" style="color:red;"> </i></a>
+
+       
+                <a style = "text-decoration: none" ng-repeat = "p in playlistArray | orderBy:'-date_creation_playlist'" ng-click="setCurrentPlaylist(p._id)" href="#" class="pn-ProductNav_Link" id="p._id">{{p.name}}</a>
+            
+             
+            <span id="pnIndicator" class="pn-ProductNav_Indicator"></span>
+            </div>
+        </nav>
+            <button id="pnAdvancerLeft" class="pn-Advancer pn-Advancer_Left" type="button">
+                <svg class="pn-Advancer_Icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 551 1024"><path d="M445.44 38.183L-2.53 512l447.97 473.817 85.857-81.173-409.6-433.23v81.172l409.6-433.23L445.44 38.18z"/></svg>
+            </button>
+            <button id="pnAdvancerRight" class="pn-Advancer pn-Advancer_Right" type="button">
+                <svg class="pn-Advancer_Icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 551 1024"><path d="M105.56 985.817L553.53 512 105.56 38.183l-85.857 81.173 409.6 433.23v-81.172l-409.6 433.23 85.856 81.174z"/></svg>
+            </button>
+</div>
+
+
+
+
+<div ng-if = "playlistArray.length == 0">
+<div class = "row marleting" style="margin-top: 5%;">
+
+        <p style = "color: gray; ">Aucune Playlist. Cliquez ci-dessus pour en créer.</p>
+    
+</div>
+</div>
+
+
+<div ng-if = "currentPlaylist && currentPlaylist.name !=''">
+<div class = "row marketing">
+
+       
+    <h3 style = "color: #8a6d3b;">{{currentPlaylist.name}} <a style="text-decoration:none;"  data-toggle="modal" data-target="#modalModifierPlaylist"> <i class="fa fa-pencil" style="margin-left:5%;"></i></a> <a style="text-decoration:none;" ng-click="supprimerPlaylist(currentPlaylist._id)"> <i class="fa fa-trash" style="color:red;margin-left: 2%;"></i></a></h3>
+</div>
+
+
+<div class = "row marketing">
+        <div class="row">
+                <div class="col-md-4" ng-repeat ="v in currentVideos">
+                        <div ng-if="v.id">
+                                <div class="thumbnail">
+                                    <a data-toggle="modal" data-target="#modalLectureVideo" ng-click='setCurrentVideo("youtube", v.id)' style="text-decoration:none;">
+                                    <img src={{v.snippet.thumbnails.medium.url}} alt="v.snippet.title" style="width:100%">
+                                    <div class="caption">
+                                        <b>{{ v.snippet.title | limitTo: 15 }}{{v.snippet.title.length > 15 ? '...' : ''}}</b>
+                                        <a ng-click="deletePlaylistVideo(v.id)"><span class ="fa fa-trash pull-right" style="color:red;"></span> </a>
+                                    </div>
+                                    </a>
+                                </div>
+                        </div>
+
+                        <div ng-if="v.stats">
+                                <div class="thumbnail">
+                                    <a data-toggle="modal" data-target="#modalLectureVideo" ng-click='setCurrentVideo("vimeo", v.uri)' style="text-decoration:none;">
+                                        <div ng-repeat="i in v.pictures.sizes">
+                                                <div ng-if="i.height == 166">
+                                                    <img src={{i.link_with_play_button}} alt="v.name" style="width:100%">
+                                                </div>
+                                        </div>
+                                        <div class="caption">
+                                            <b>{{ v.name | limitTo: 15 }}{{v.name.length > 15 ? '...' : ''}}</b>
+                                            <a ng-click="deletePlaylistVideo(v.uri)"><span class ="fa fa-trash pull-right" style="color:red;"></span></a>
+                                        </div>
+                                    </a>
+                                </div>
+                        </div>
+                </div>
+                
+
+</div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+ <!-- Modal création playlist -->
+
+
+ <div id="modalPlaylist" class="modal fade" role="dialog" style="max-height: 80vh;">
+        <div class="modal-dialog modal-notify modal-info" role="document">
+        
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center" style="background-color :#ef3d47; ">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center" style="color: white;">Créer Playlist</h4>
+            </div>
+            <div class="modal-body">
+                    <form>
+                            <div class="form-group">
+           
+                               
+                                    <input id="barnouvelleplaylist" type="text" maxlength="30" class="form-control" placeholder="Nouvelle Playlist" style="width:80%;display: inline-block;" required autofocus> 
+                                    <button class="btn btn-default" type="submit" data-dismiss="modal" ng-click ="ajouterPlaylist()" style="display: inline-block; ">
+                                            <i class="fa fa-plus">
+                                  
+                                            </i>
+                                    </button>
+                            </div>
+                           
+                    </form>
+        
+                   
+              
+        
+             
+          
+           
+        </div>
+        
+        </div>
+        </div>
+</div>
+
+
+
+<!-- Modal Lecture Video -->
+
+<div id="modalLectureVideo" class="modal fade" role="dialog" style="width:80%;margin-left: 5%; ">
+        <div class="modal-dialog" role="document" style="width:100%;  margin: 5% auto;">
+        
+            <!-- Modal content-->
+            <div class="modal-content" style="background:none; border:0;">
+                    <div class="modal-header" style="border:0;">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="closeModal()" style="font-size:4rem;font-weight: normal;color:#fff;opacity:1;"><span aria-hidden="true">&times;</span></button>
+
+                        </div>
+           
+            <div class="modal-body" style="padding: 0px;">
+
+                   
+                    <div ng-if='currentSource == "vimeo" '>
+                                <div class="embed-responsive embed-responsive-16by9" id="yt-player">
+                    
+                    
+                                    <div ng-bind-html="vimeoIframe()"></div>
+                                </div>
+                            
+                    </div>
+
+                    <div ng-if='currentSource == "youtube" '>
+                          
+                                 <div class="embed-responsive embed-responsive-16by9" >
+                     
+                                         <iframe class="embed-responsive-item" ng-src="{{getYoutubeIframeSrc()}}" allowfullscreen></iframe>
+                                 </div>
+                                 
+                    </div>
+          
+            
+        </div>
+        
+        </div>
+        </div>
+</div>
+
+
+
+
+  
+
+
+
+   <!-- Modal Modification playlist -->
+
+
+
+<div id="modalModifierPlaylist" class="modal fade" role="dialog" style="max-height: 80vh;">
+        <div class="modal-dialog modal-notify modal-info" role="document">
+        
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center" style="background-color :#ef3d47; ">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title text-center" style="color: white;">Modifier la playlist</h4>
+            </div>
+            <div class="modal-body">
+                    <form>
+                            <div class="form-group">
+           
+                               
+                                    <input id="barmodifierPlaylist" ng-model = "currentPlaylist.name" type="text" maxlength="30" class="form-control" placeholder="Nouveau nom" style="width:80%;display: inline-block;" required autofocus> 
+                                    <button  class="btn btn-default" type="submit" data-dismiss="modal" style="display: inline-block; " ng-click="modifierPlaylist()">
+                                            Modifier
+                                    </button>
+                            </div>
+                           
+                    </form>
+        
+                   
+              
+        
+             
+          
+            
+        </div>
+        
+        </div>
+        </div>
+</div>
+
+
+
+
+

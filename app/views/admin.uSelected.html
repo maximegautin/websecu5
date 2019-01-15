@@ -1,0 +1,26 @@
+<div class="row marketing">
+        <h2 class="text-heading text-center">Utilisateurs </h2>
+    
+        
+</div>
+
+<div class = "row marketing">
+
+   
+        <h3 style = "color: #8a6d3b; display: inline-block;">{{uSelected.prenom}} {{uSelected.nom}}  </h3>
+
+        <div class="scrollmenu" style="display: inline-block; margin-left: 8%;" id="scrollmenu">
+
+                <a href="#" ng-click="setUserOption(1)">Historique</a>
+                <a href="#" ng-click="setUserOption(2)">Logs</a>
+                <a href="#" ng-click="setUserOption(3)">Actions</a>
+                
+        </div>
+
+</div>
+
+<div class = "row marketing" ng-include="userOption">
+
+</div>
+
+
